@@ -134,17 +134,8 @@ if st.button("🎯 Generate My Exercise Plan", type="primary", use_container_wid
     if not api_key:
         st.error("❌ Please enter your Google AI Studio API Key in the sidebar first!")
     else:
-        with st.spinner("🤖 Creating your personalized exercise plan..."):
-            try:
-                # Test Ollama connection first
-                st.info("🔌 Testing connection to Ollama...")
-                test_response = chat(
-                    model='gemma3:4b',
-                    messages=[{'role': 'user', 'content': 'Hi'}],
-                    options={'num_predict': 10}
-                )
-                st.success("✅ Connection successful! Now generating your plan...")
-                
+        try:
+            with st.spinner("🤖 Creating your personalized exercise plan... (This may take 30-60 seconds)"):
                 # Prepare the prompt for the AI model
                 additional_context = f"\n\nAdditional user information: {user_notes}" if user_notes else ""
                 
@@ -225,7 +216,7 @@ Format the response in a clear, day-by-day structure that is easy to follow."""
                     mime="text/plain"
                 )
                 
-            except ConnectionError as e:
+        except ConnectionError as e:
                 st.error(f"❌ Connection Error: Cannot connect to Ollama")
                 st.error(f"Details: {str(e)}")
                 st.info("""
@@ -237,22 +228,22 @@ Format the response in a clear, day-by-day structure that is easy to follow."""
                 3. Wait for it to start (you'll see "Ollama is running")
                 4. Come back to this app and try again
                 """)
-            except Exception as e:
-                st.error(f"❌ An error occurred: {str(e)}")
-                st.error(f"Error type: {type(e).__name__}")
-                st.info("""
-                **Troubleshooting:**
-                - Make sure Ollama is running: Open PowerShell and run `ollama serve`
-                - Verify that the gemma3:4b model is installed: `ollama list`
-                - If model is missing, install it: `ollama pull gemma3:4b`
-                - Try refreshing the page and generating again
-                """)
-                
-                # Show expanded error details
-                with st.expander("🔍 View detailed error information"):
-                    st.code(str(e))
-                    import traceback
-                    st.code(traceback.format_exc())
+        except Exception as e:
+            st.error(f"❌ An error occurred: {str(e)}")
+            st.error(f"Error type: {type(e).__name__}")
+            st.info("""
+            **Troubleshooting:**
+            - Make sure Ollama is running: Open PowerShell and run `ollama serve`
+            - Verify that the gemma3:4b model is installed: `ollama list`
+            - If model is missing, install it: `ollama pull gemma3:4b`
+            - Try refreshing the page and generating again
+            """)
+            
+            # Show expanded error details
+            with st.expander("🔍 View detailed error information"):
+                st.code(str(e))
+                import traceback
+                st.code(traceback.format_exc())
 
 # Footer
 st.markdown("---")
