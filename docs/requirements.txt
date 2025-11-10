@@ -1,0 +1,5 @@
+Requirements for the program:
+The program will give physical exercize advice for a week that the user is recommended to do every day.
+The user must be able to select the date of birth.
+The user must be able to type the amount of minutes in numbers only to indicate how long the user can exercize per day.
+The user must be able to select the goal the user is aiming for from two options: lose weight or gain muscles.

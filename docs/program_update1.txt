@@ -1,0 +1,5 @@
+The program must introduce itself as UAB Sveikata agent.
+The agent must mention at the beginning and the end of the advice that "The advice is AI based and is not a professional doctor's opinion."
+The program must have a place for the user to type before generating Exercize plan.
+The program must only answer questions about exercize plan, and must not answer the unrelated questions.
+Otherwise, the program must stay the same.

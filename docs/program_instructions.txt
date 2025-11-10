@@ -1,0 +1,4 @@
+The program must:
+Use streamlit from file Streamlit.md to create a web interface and to be able to chat with the user.
+Use Ollama model gemma3:4b from ollama.md file.
+The API Key for Google AI Studio must be passed in the web interface.
