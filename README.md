@@ -46,7 +46,7 @@ A Streamlit-based web application that provides personalized weekly exercise pla
    ```
 
 3. **Open your browser**:
-   - The app should automatically open at http://localhost:8501
+   - The app should automatically open at http://localhost:8503
    - If not, navigate to the URL shown in your terminal
 
 ## How to Use
