@@ -136,6 +136,15 @@ if st.button("🎯 Generate My Exercise Plan", type="primary", use_container_wid
     else:
         with st.spinner("🤖 Creating your personalized exercise plan..."):
             try:
+                # Test Ollama connection first
+                st.info("🔌 Testing connection to Ollama...")
+                test_response = chat(
+                    model='gemma3:4b',
+                    messages=[{'role': 'user', 'content': 'Hi'}],
+                    options={'num_predict': 10}
+                )
+                st.success("✅ Connection successful! Now generating your plan...")
+                
                 # Prepare the prompt for the AI model
                 additional_context = f"\n\nAdditional user information: {user_notes}" if user_notes else ""
                 
@@ -162,6 +171,8 @@ IMPORTANT: End your response with a reminder that "The advice is AI based and is
 Format the response in a clear, day-by-day structure that is easy to follow."""
 
                 # Call the Ollama model (gemma3:4b)
+                st.info("⏳ Connecting to Ollama and generating your plan... This may take 30-60 seconds.")
+                
                 response = chat(
                     model='gemma3:4b',
                     messages=[
@@ -176,8 +187,10 @@ Format the response in a clear, day-by-day structure that is easy to follow."""
                     ],
                     options={
                         'temperature': 0.7,
-                        'num_predict': 1500
-                    }
+                        'num_predict': 2000,
+                        'num_ctx': 4096
+                    },
+                    keep_alive='5m'
                 )
                 
                 # Display the exercise plan
